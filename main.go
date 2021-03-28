@@ -6,7 +6,7 @@ import (
 	"log"
 
 	"github.com/spdx/yaml/model"
-	"github.com/spdx/yaml/parse2v2"
+	parse "github.com/spdx/yaml/parse_Annotation"
 	"gopkg.in/yaml.v2"
 )
 
@@ -31,13 +31,22 @@ func main() {
 		log.Fatal(err)
 	}
 
-	annotations := parse2v2.ParseAnnotation(c)
+	annotations2v2 := parse.ParseAnnotation2v2(c)
 
-	for i := 0; i < len(annotations); i++ {
-		fmt.Println((annotations)[i].AnnotationComment)
-		fmt.Println((annotations)[i].AnnotationType)
-		fmt.Println((annotations)[i].AnnotatorType)
-		fmt.Println((annotations)[i].Annotator)
-		fmt.Println((annotations)[i].AnnotationDate)
+	for i := 0; i < len(annotations2v2); i++ {
+		fmt.Println((annotations2v2)[i].AnnotationComment)
+		fmt.Println((annotations2v2)[i].AnnotationType)
+		fmt.Println((annotations2v2)[i].AnnotatorType)
+		fmt.Println((annotations2v2)[i].Annotator)
+		fmt.Println((annotations2v2)[i].AnnotationDate)
+	}
+	annotations2v1 := parse.ParseAnnotation2v1(c)
+
+	for i := 0; i < len(annotations2v1); i++ {
+		fmt.Println((annotations2v1)[i].AnnotationComment)
+		fmt.Println((annotations2v1)[i].AnnotationType)
+		fmt.Println((annotations2v1)[i].AnnotatorType)
+		fmt.Println((annotations2v1)[i].Annotator)
+		fmt.Println((annotations2v1)[i].AnnotationDate)
 	}
 }
